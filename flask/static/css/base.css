@@ -1,0 +1,22 @@
+body {
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+  font-family: 'Poppins', sans-serif;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+}
+
+.card-body {
+  position: relative;
+}
+
+.card-img-top {
+  position: static;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 200px;
+}

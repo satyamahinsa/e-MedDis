@@ -22,6 +22,6 @@ class Obat extends Model
     // Define the many-to-many relationship with Resep
     public function reseps()
     {
-        return $this->belongsToMany(Resep::class, 'obat_resep');
+        return $this->belongsToMany(Resep::class, 'obat_reseps')->withPivot('jumlah')->withTimestamps();
     }
 }
