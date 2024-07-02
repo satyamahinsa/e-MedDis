@@ -35,15 +35,25 @@
                     </tr>
                   </thead>
                   <tbody>
+                    {% for obat in data_obat %}
                     <tr>
-                      <td>1</td>
-                      <td>{{ data_obat.NamaObat }}</td>
-                      <td>{{ data_obat.JenisObat }}</td>
-                      <td>{{ data_obat_resep.jumlah }}</td>
+                      <td>{{ loop.index }}</td>
+                      <td>{{ obat.NamaObat }}</td>
+                      <td>{{ obat.JenisObat }}</td>
+                      <td>{{ obat.jumlah }}</td>
                     </tr>
+                    {% endfor %}
                   </tbody>
                 </table>
               </div>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col-6 d-grid">
+              <a href="{{ url_for('registration') }}" class="btn btn-secondary">Kembali</a>
+            </div>
+            <div class="col-6 d-grid">
+              <button class="btn btn-primary" id="confirmBtn">OK</button>
             </div>
           </div>
         </div>
@@ -51,4 +61,38 @@
     </div>
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="loadingModal" tabindex="-1" aria-labelledby="loadingModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loadingModalLabel">Mohon Tunggu</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Sedang memproses pengeluaran obat...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('confirmBtn').addEventListener('click', function() {
+    var modal = new bootstrap.Modal(document.getElementById('loadingModal'), {
+      backdrop: 'static',
+      keyboard: false
+    });
+    modal.show();
+
+    setTimeout(function() {
+      modal.hide();
+      window.location.href = "{{ url_for('registration') }}";
+    }, 5000);
+  });
+</script>
+
 {% endblock main %}

@@ -45,16 +45,21 @@ def confirmation():
         response_obat_resep = requests.get(API_OBAT_RESEP_URL, params={'resep_id': id_resep})
         if response_obat_resep.status_code == 200:
             data_obat_resep = response_obat_resep.json()['data']
-            id_obat = data_obat_resep[0]['obat_id']
-            
-            response_obat = requests.get(API_OBAT_URL, params={'id': id_obat})
-            if response_obat.status_code == 200:
-                data_obat = response_obat.json()['data']
-            else:
-                flash(f'Error dalam mengakses API Obat untuk obat_id {id_obat}')
-                return redirect(url_for('registration'))
-            
-            return render_template('pages/confirmation.html', data_resep=data_resep[0], data_obat_resep=data_obat_resep[0], data_obat=data_obat[0])
+            data_obat = []
+
+            i = 0
+            for obat_resep in data_obat_resep:
+                id_obat = obat_resep['obat_id']
+                response_obat = requests.get(API_OBAT_URL, params={'id': id_obat})
+                if response_obat.status_code == 200:
+                    data_obat.append(response_obat.json()['data'][0])
+                    data_obat[i]['jumlah'] = obat_resep['jumlah']
+                    i += 1
+                else:
+                    flash(f'Error dalam mengakses API Obat untuk obat_id {id_obat}')
+                    return redirect(url_for('registration'))
+                
+            return render_template('pages/confirmation.html', data_resep=data_resep[0], data_obat=data_obat)
         else:
             flash(f'Error dalam mengakses API Obat Resep untuk resep_id {id_resep}')
             return redirect(url_for('registration'))

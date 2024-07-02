@@ -34,4 +34,22 @@ class ResepController extends Controller
     {
         return new ResepResource(true, 'Data Resep Ditemukan!', $resep);
     }
+
+    public function store(Request $request)
+    {
+        // Validasi data yang diterima dari request
+        $validatedData = $request->validate([
+            'no_antrian' => 'required',
+            'tanggal_lahir_pasien' => 'required|date',
+        ]);
+
+        // Membuat objek resep baru berdasarkan data yang diterima
+        $resep = new Resep();
+        $resep->no_antrian = $request->no_antrian;
+        $resep->tanggal_lahir_pasien = $request->tanggal_lahir_pasien;
+        $resep->save();
+
+        // Mengembalikan response sukses jika data berhasil ditambahkan
+        return new ResepResource(true, 'Data Resep berhasil ditambahkan!', $resep);
+    }
 }
