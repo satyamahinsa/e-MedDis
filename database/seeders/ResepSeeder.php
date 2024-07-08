@@ -15,22 +15,22 @@ class ResepSeeder extends Seeder
     public function run()
     {
         $reseps = [
-            ['no_antrian' => '1A', 'tanggal_lahir_pasien' => '1990-01-15'],
-            ['no_antrian' => '2C', 'tanggal_lahir_pasien' => '1985-06-24'],
-            ['no_antrian' => '3R', 'tanggal_lahir_pasien' => '2000-03-12'],
-            ['no_antrian' => '4F', 'tanggal_lahir_pasien' => '1992-07-30'],
-            ['no_antrian' => '5Q', 'tanggal_lahir_pasien' => '1978-11-22'],
-            ['no_antrian' => '6H', 'tanggal_lahir_pasien' => '2001-09-05'],
-            ['no_antrian' => '7W', 'tanggal_lahir_pasien' => '1988-04-17'],
-            ['no_antrian' => '8A', 'tanggal_lahir_pasien' => '1995-12-25'],
-            ['no_antrian' => '9P', 'tanggal_lahir_pasien' => '1991-02-14'],
-            ['no_antrian' => '10N', 'tanggal_lahir_pasien' => '1998-08-09'],
+            ['no_antrian' => '1A', 'nik' => '3201041203980001'],
+            ['no_antrian' => '2C', 'nik' => '3202011505920002'],
+            ['no_antrian' => '3R', 'nik' => '3203012301800003'],
+            ['no_antrian' => '4F', 'nik' => '3204050707750004'],
+            ['no_antrian' => '5Q', 'nik' => '3205062806920005'],
+            ['no_antrian' => '6H', 'nik' => '3206010912890006'],
+            ['no_antrian' => '7W', 'nik' => '3207023004010007'],
+            ['no_antrian' => '8A', 'nik' => '3208031711750008'],
+            ['no_antrian' => '9P', 'nik' => '3209052512920009'],
+            ['no_antrian' => '10N', 'nik' => '3210011105850010'],
         ];
 
         foreach ($reseps as $resep) {
             Resep::create([
                 'no_antrian' => $resep['no_antrian'],
-                'tanggal_lahir_pasien' => $resep['tanggal_lahir_pasien'],
+                'nik' => $resep['nik'],
             ]);
         }
     }

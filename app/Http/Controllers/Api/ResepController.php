@@ -18,9 +18,9 @@ class ResepController extends Controller
             $query->where('no_antrian', $request->no_antrian);
         }
 
-        // Memeriksa apakah ada parameter pencarian tanggal_lahir_pasien
-        if ($request->has('tanggal_lahir_pasien')) {
-            $query->where('tanggal_lahir_pasien', $request->tanggal_lahir_pasien);
+        // Memeriksa apakah ada parameter pencarian nik
+        if ($request->has('nik')) {
+            $query->where('nik', $request->nik);
         }
 
         // Ambil data resep berdasarkan query yang telah dibuat
@@ -33,5 +33,21 @@ class ResepController extends Controller
     public function show(Resep $resep)
     {
         return new ResepResource(true, 'Data Resep Ditemukan!', $resep);
+    }
+
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'no_antrian' => 'required',
+            'nik' => 'required',
+        ]);
+
+        $resep = new Resep();
+        $resep->no_antrian = $request->no_antrian;
+        $resep->nik = $request->nik;
+        $resep->save();
+
+        // Mengembalikan response sukses jika data berhasil ditambahkan
+        return new ResepResource(true, 'Data Resep berhasil ditambahkan!', $resep);
     }
 }
