@@ -16,7 +16,7 @@ class CreateResepsTable extends Migration
         Schema::create('reseps', function (Blueprint $table) {
             $table->id();
             $table->string('no_antrian');
-            $table->date('tanggal_lahir_pasien');
+            $table->string('nik');
             $table->timestamps();
         });
     }

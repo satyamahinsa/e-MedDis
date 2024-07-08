@@ -10,7 +10,7 @@ class Resep extends Model
     use HasFactory;
     protected $fillable = [
         'no_antrian',
-        'tanggal_lahir_pasien',
+        'nik',
     ];
 
     public function obats()
