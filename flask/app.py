@@ -13,17 +13,16 @@ API_OBAT_URL = 'http://localhost:8000/api/obats'
 def registration():
     if request.method == 'POST':
         nomorAntrian = request.form['nomorAntrian']
-        tanggalLahir_str = request.form['tanggalLahir']
-        tanggalLahir = datetime.strptime(tanggalLahir_str, '%Y-%m-%d').date()
+        nik = request.form['nik']
         
         try:
-            response = requests.get(API_RESEP_URL, params={'no_antrian': nomorAntrian, 'tanggal_lahir_pasien': tanggalLahir})
+            response = requests.get(API_RESEP_URL, params={'no_antrian': nomorAntrian, 'nik': nik})
             if response.status_code == 200:
                 data_resep = response.json()['data']
                 session['data_resep'] = data_resep
                 return redirect(url_for('confirmation'))
             else:
-                flash('Data resep tidak ditemukan! Mohon periksa kembali nomor antrian dan tanggal lahir Anda.')
+                flash('Data resep tidak ditemukan! Mohon periksa kembali nomor antrian dan NIK Anda.')
                 return redirect(url_for('registration'))
         except requests.exceptions.RequestException as e:
             flash(f'Error dalam mengakses API: {str(e)}')
