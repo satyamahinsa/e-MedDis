@@ -6,9 +6,13 @@
 <div class="container d-flex vh-100">
   <div class="row justify-content-center align-self-center w-100">
     <div class="col-md-8 col-lg-6">
-      <div class="card shadow-lg">
-        <div class="card-body">
-          <h1 class="card-title text-center mb-4">Konfirmasi</h1>
+      <div class="iq-card shadow-lg">
+        <div class="iq-card-header pt-4">
+          <div class="iq-header-title d-block">
+            <h1 class="card-title text-center mb-4">{% block header %}Konfirmasi{% endblock header %}</h1>
+          </div>
+        </div>
+        <div class="iq-card-body">
           <div id="confirmationDetails" class="row">
             <div class="col-6">
               <div class="mb-3">
@@ -19,7 +23,7 @@
             <div class="col-6">
               <div class="mb-3">
                 <h5>NIK:</h5>
-                <p class="text-muted"><i class="fas fa-calendar-alt"></i> {{ data_resep.nik }}</p>
+                <p class="text-muted">{{ data_resep.nik }}</p>
               </div>
             </div>
             <div class="col-12">
@@ -50,10 +54,10 @@
           </div>
           <div class="row mt-4">
             <div class="col-6 d-grid">
-              <a href="{{ url_for('registration') }}" class="btn btn-secondary">Kembali</a>
+              <a href="{{ url_for('registration') }}" class="btn btn-secondary me-1 mt-2">Kembali</a>
             </div>
             <div class="col-6 d-grid">
-              <button class="btn btn-primary" id="confirmBtn">OK</button>
+              <button class="btn btn-primary me-1 mt-2" id="confirmBtn">OK</button>
             </div>
           </div>
         </div>
@@ -63,7 +67,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="loadingModal" tabindex="-1" aria-labelledby="loadingModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">

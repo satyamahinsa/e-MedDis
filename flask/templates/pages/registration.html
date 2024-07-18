@@ -3,57 +3,59 @@
 {% block title %}Registrasi{% endblock title %}
 
 {% block main %}
-<div class="container d-flex vh-100">
-  <div class="row justify-content-center align-self-center w-100">
-    <div class="col-md-8 col-lg-6">
-      <div class="card shadow-lg">
-        <div class="card-body p-4">
-          <i class="fa-solid fa-hospital-user mt-5 fs-1 position-absolute top-0 start-50 translate-middle"></i>
-          <h1 class="card-title text-center mb-4 mt-5">{% block header %}Registrasi{% endblock header %}</h1>
-
-          {% with messages = get_flashed_messages() %}
-            {% if messages %}
-              <div class="alert alert-danger" role="alert">
-                {{ messages[0] }}
-              </div>
-            {% endif %}
-          {% endwith %}
-          
-          <form id="registrationForm" method="POST" action="{{ url_for('registration') }}" novalidate>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="inputNomorAntrian" class="form-label">Nomor Antrian</label>
-                  <input type="text" name="nomorAntrian" class="form-control" id="inputNomorAntrian" placeholder="Masukkan nomor antrian anda" required>
-                  <div class="invalid-feedback">Silakan masukkan nomor antrian Anda.</div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="inputNIK" class="form-label">NIK</label>
-                  <input type="text" name="nik" class="form-control" id="inputNIK" placeholder="Masukkan NIK anda" required>
-                  <div class="invalid-feedback">Silakan masukkan NIK Anda.</div>
-                </div>
-              </div>
+  <div class="container d-flex vh-100">
+    <div class="row justify-content-center align-self-center w-100">
+      <div class="col-md-8 col-lg-6">
+        <div class="iq-card shadow-lg">
+          <div class="iq-card-header pt-4">
+            <div class="iq-header-title d-block">
+              <h1 class="card-title text-center">{% block header %}Registrasi{% endblock header %}</h1>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Submit</button>
-          </form>
+          </div>
+          <div class="iq-card-body p-4">
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <div class="alert alert-danger" role="alert">
+                  {{ messages[0] }}
+                </div>
+              {% endif %}
+            {% endwith %}
+            
+            <form id="registrationForm" method="POST" action="{{ url_for('registration') }}" novalidate>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="inputNomorAntrian" class="form-label">Nomor Antrian</label>
+                    <input type="text" name="nomorAntrian" class="form-control" id="inputNomorAntrian" placeholder="Masukkan nomor antrian anda" required>
+                    <div class="invalid-feedback">Silakan masukkan nomor antrian Anda.</div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="inputNIK" class="form-label">NIK</label>
+                    <input type="text" name="nik" class="form-control" id="inputNIK" placeholder="Masukkan NIK anda" required>
+                    <div class="invalid-feedback">Silakan masukkan NIK Anda.</div>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary me-1 mt-2 w-100">Submit</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var form = document.getElementById('registrationForm');
-    form.addEventListener('submit', function (event) {
-      if (!form.checkValidity()) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-      form.classList.add('was-validated');
-    }, false);
-  });
-</script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var form = document.getElementById('registrationForm');
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  </script>
 {% endblock main %}
